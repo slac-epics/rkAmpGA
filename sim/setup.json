@@ -1,0 +1,60 @@
+{
+    "server_list": {
+        "server": {
+            "comm": "tcp",
+            "host": "0.0.0.0",
+            "port": 1502,
+            "framer": "socket",
+            "identity": {
+                "VendorName": "R&K",
+                "ProductCode": "??",
+                "VendorUrl": "",
+                "ProductName": "GA11424BW200-5757P RF Amplifier",
+                "ModelName": "GA11424BW200-5757P",
+                "MajorMinorRevision": ""
+            }
+        }
+    },
+    "device_list": {
+        "device": {
+            "setup": {
+                "hr size": 12,
+                "co size": 0,
+                "di size": 0,
+                "ir size": 0,
+                "shared blocks": true,
+                "type exception": true,
+                "defaults": {
+                    "value": {
+                        "bits": 0,
+                        "uint32": 0,
+                        "float32": 0,
+                        "uint16": 0,
+                        "string": " "
+                    },
+                    "action": {
+                        "bits": null,
+                        "uint32": null,
+                        "float32": null,
+                        "uint16": null,
+                        "string": null
+                    }
+                }
+            },
+            "invalid": [1],
+            "write": [1, 2, 3, 4],
+            "bits": [],
+            "uint32": [],
+            "float32": [],
+            "string": [],
+            "repeat": [],
+            "uint16": [
+                {"addr": 1, "value": 1, "kwargs": {"minval": 0, "maxval": 1}},
+                {"addr": 2, "value": 0, "kwargs": {"minval": 0, "maxval": 1}},
+                {"addr": [3,4], "value": 500, "kwargs": {"minval": 10, "maxval": 999}},
+                {"addr": [5,10], "value": 0, "kwargs": {"minval": 0, "maxval": 1}},
+                {"addr": 11, "value": 1520}
+            ]
+        }
+    }
+}
