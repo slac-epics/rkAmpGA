@@ -1,1 +1,135 @@
 
+record(bo, "$(P)RUN") {
+    field(DESC, "Device power state")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn($(OUTPORT), 0)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+# Readback for RUN
+record(bi, "$(P)RUN_RBV") {
+    field(DESC, "Device power state readback")
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(INPORT), 0)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)RESET") {
+    field(DESC, "Device reset")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn($(OUTPORT), 1)")
+}
+
+record(longout, "$(P)FWD_PWR") {
+    field(DESC, "FWD Power")
+    field(EGU, "W")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn($(OUTPORT), 2)")
+    # Range 10-999W
+    field(DRVH, "999")
+    field(DRVL, "10")
+}
+
+# Readback for forward power
+record(longin, "$(P)FWD_PWR_RBV") {
+    field(DESC, "FWD Power readback")
+    field(EGU, "W")
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(INPORT), 2)")
+    field(SCAN, "I/O Intr")
+}
+
+record(longout, "$(P)REF_PWR") {
+    field(DESC, "REF Power")
+    field(EGU, "W")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn($(OUTPORT), 3)")
+    # Range 10-999W
+    field(DRVH, "999")
+    field(DRVL, "10")
+}
+
+# Readback for ref power
+record(longin, "$(P)REF_PWR_RBV") {
+    field(DESC, "REF Power readback")
+    field(EGU, "W")
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(INPORT), 3)")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)FWD_OVER_ALARM") {
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(INPORT), 4)")
+    field(OSV, "MAJOR")
+    field(ZNAM, "OK")
+    field(ONAM, "FAULT")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)STATUS")
+}
+
+record(bi, "$(P)REF_OVER_ALARM") {
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(INPORT), 5)")
+    field(OSV, "MAJOR")
+    field(ZNAM, "OK")
+    field(ONAM, "FAULT")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)STATUS")
+}
+
+record(bi, "$(P)TEMP_OVER_ALARM") {
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(INPORT), 6)")
+    field(OSV, "MAJOR")
+    field(ZNAM, "OK")
+    field(ONAM, "FAULT")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)STATUS")
+}
+
+record(bi, "$(P)PS10V_ALARM") {
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(INPORT), 7)")
+    field(OSV, "MAJOR")
+    field(ZNAM, "OK")
+    field(ONAM, "FAULT")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)STATUS")
+}
+
+record(bi, "$(P)PS48V_ALARM") {
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(INPORT), 8)")
+    field(OSV, "MAJOR")
+    field(ZNAM, "OK")
+    field(ONAM, "FAULT")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)STATUS")
+}
+
+record(bi, "$(P)POVER_ALARM") {
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(INPORT), 9)")
+    field(OSV, "MAJOR")
+    field(ZNAM, "OK")
+    field(ONAM, "FAULT")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)STATUS")
+}
+
+record(calc, "$(P)STATUS")
+{
+    field(INPA, "$(P)FWD_OVER_ALARM")
+    field(INPB, "$(P)REF_OVER_ALARM")
+    field(INPC, "$(P)TEMP_OVER_ALARM")
+    field(INPD, "$(P)PS10V_ALARM")
+    field(INPE, "$(P)PS48V_ALARM")
+    field(INPF, "$(P)POVER_ALARM")
+    field(CALC, "A|(B<<1)|(C<<2)|(D<<3)|(E<<4)|(F<<5)")
+    field(HIGH, "1")
+    field(HSV, "MAJOR")
+}

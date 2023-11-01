@@ -14,6 +14,9 @@ DBD += rkGA11424BW200Test.dbd
 
 # rkGA11424BW200Test.dbd will be made up from these files:
 rkGA11424BW200Test_DBD += base.dbd
+rkGA11424BW200Test_DBD += asyn.dbd
+rkGA11424BW200Test_DBD += modbusSupport.dbd
+rkGA11424BW200Test_DBD += drvAsynIPPort.dbd
 
 # Include dbd files from all support applications:
 #rkGA11424BW200Test_DBD += xxx.dbd
@@ -32,6 +35,7 @@ rkGA11424BW200Test_SRCS_vxWorks += -nil-
 #rkGA11424BW200Test_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
+rkGA11424BW200Test_LIBS += asyn modbus
 rkGA11424BW200Test_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
