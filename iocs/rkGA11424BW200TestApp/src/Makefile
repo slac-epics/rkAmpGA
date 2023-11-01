@@ -35,7 +35,8 @@ rkGA11424BW200Test_SRCS_vxWorks += -nil-
 #rkGA11424BW200Test_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
-rkGA11424BW200Test_LIBS += asyn modbus
+rkGA11424BW200Test_LIBS += modbus
+rkGA11424BW200Test_LIBS += asyn
 rkGA11424BW200Test_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
