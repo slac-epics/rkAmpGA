@@ -30,3 +30,5 @@ O.*/
 *.log
 .*.swp
 .DS_Store
+
+RELEASE_SITE
