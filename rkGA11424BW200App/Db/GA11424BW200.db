@@ -1,6 +1,6 @@
 
-record(bo, "$(P)RUN") {
-    field(DESC, "Device power state")
+record(bo, "$(P)SSSB_STATE_SET") {
+    field(DESC, "Set device operation state")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn($(OUTPORT), 0)")
     field(ZNAM, "OFF")
@@ -8,8 +8,8 @@ record(bo, "$(P)RUN") {
 }
 
 # Readback for RUN
-record(bi, "$(P)RUN_RBV") {
-    field(DESC, "Device power state readback")
+record(bi, "$(P)SSSB_STATE") {
+    field(DESC, "Device operation state readback")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 0)")
     field(ZNAM, "OFF")
@@ -17,119 +17,115 @@ record(bi, "$(P)RUN_RBV") {
     field(SCAN, "I/O Intr")
 }
 
-record(bo, "$(P)RESET") {
+record(bo, "$(P)SSSB_RESET") {
     field(DESC, "Device reset")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn($(OUTPORT), 1)")
 }
 
-record(longout, "$(P)FWD_PWR") {
-    field(DESC, "FWD Power")
+record(longout, "$(P)SSSB_RF_OUT_PWR_SET") {
+    field(DESC, "Set forward out power")
     field(EGU, "W")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn($(OUTPORT), 2)")
-    # Range 10-999W
-    field(DRVH, "999")
+    # Register range 10-999W, however the hardware can only handle 600W out
+    field(DRVH, "600")
     field(DRVL, "10")
+    field(HOPR, "600")
+    field(LOPR, "10")
 }
 
 # Readback for forward power
-record(longin, "$(P)FWD_PWR_RBV") {
-    field(DESC, "FWD Power readback")
+record(longin, "$(P)SSSB_RF_OUT_PWR") {
+    field(DESC, "Forward out power readback")
     field(EGU, "W")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 2)")
     field(SCAN, "I/O Intr")
+    # Register range 10-999W, however the hardware can only handle 600W out
+    field(HOPR, "600")
+    field(LOPR, "10")
 }
 
-record(longout, "$(P)REF_PWR") {
-    field(DESC, "REF Power")
+record(longout, "$(P)SSSB_RF_RFLCT_PWR_SET") {
+    field(DESC, "Set out reflected power")
     field(EGU, "W")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn($(OUTPORT), 3)")
-    # Range 10-999W
-    field(DRVH, "999")
+    # Register range 10-999W, however the hardware can only handle 250W out
+    field(DRVH, "250")
     field(DRVL, "10")
+    field(HOPR, "250")
+    field(LOPR, "10")
 }
 
 # Readback for ref power
-record(longin, "$(P)REF_PWR_RBV") {
-    field(DESC, "REF Power readback")
+record(longin, "$(P)SSSB_RF_RFLCT_PWR") {
+    field(DESC, "Out reflected power readback")
     field(EGU, "W")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 3)")
     field(SCAN, "I/O Intr")
+    # Register range 10-999W, however the hardware can only handle 250W out
+    field(HOPR, "250")
+    field(LOPR, "10")
 }
 
-record(bi, "$(P)FWD_OVER_ALARM") {
+record(bi, "$(P)SSSB_RF_OUT_PWR_FLT") {
+    field(DESC, "Forward out power exceeds 600W")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 4)")
     field(OSV, "MAJOR")
     field(ZNAM, "OK")
     field(ONAM, "FAULT")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)STATUS")
 }
 
-record(bi, "$(P)REF_OVER_ALARM") {
+record(bi, "$(P)SSSB_RF_RFLCT_PWR_FLT") {
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 5)")
     field(OSV, "MAJOR")
     field(ZNAM, "OK")
     field(ONAM, "FAULT")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)STATUS")
 }
 
-record(bi, "$(P)TEMP_OVER_ALARM") {
+record(bi, "$(P)SSSB_TEMP_FLT") {
+    field(DESC, "Over-temp fault")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 6)")
     field(OSV, "MAJOR")
     field(ZNAM, "OK")
     field(ONAM, "FAULT")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)STATUS")
 }
 
-record(bi, "$(P)PS10V_ALARM") {
+record(bi, "$(P)SSSB_PWR_10V_FLT") {
+    field(DESC, "10V power supply fault")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 7)")
     field(OSV, "MAJOR")
     field(ZNAM, "OK")
     field(ONAM, "FAULT")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)STATUS")
 }
 
-record(bi, "$(P)PS48V_ALARM") {
+record(bi, "$(P)SSSB_PWR_48V_FLT") {
+    field(DESC, "48V power supply fault")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 8)")
     field(OSV, "MAJOR")
     field(ZNAM, "OK")
     field(ONAM, "FAULT")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)STATUS")
 }
 
-record(bi, "$(P)POVER_ALARM") {
+record(bi, "$(P)SSSB_PULSE_OVER_FLT") {
+    field(DESC, "Pulse width >6uS or pulse duty >2% fault")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 9)")
     field(OSV, "MAJOR")
     field(ZNAM, "OK")
     field(ONAM, "FAULT")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)STATUS")
-}
-
-record(calc, "$(P)STATUS")
-{
-    field(INPA, "$(P)FWD_OVER_ALARM")
-    field(INPB, "$(P)REF_OVER_ALARM")
-    field(INPC, "$(P)TEMP_OVER_ALARM")
-    field(INPD, "$(P)PS10V_ALARM")
-    field(INPE, "$(P)PS48V_ALARM")
-    field(INPF, "$(P)POVER_ALARM")
-    field(CALC, "A|(B<<1)|(C<<2)|(D<<3)|(E<<4)|(F<<5)")
-    field(HIGH, "1")
-    field(HSV, "MAJOR")
 }

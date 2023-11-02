@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 pushd "$(dirname "$0")"
-cd iocs/iocBoot/iocrkGA11424BW200Test
+cd iocs/testIOC/iocBoot/iocrkGA11424BW200Test
 if [ -z $DEBUGGER ]; then
     ./st.cmd
 else
