@@ -52,7 +52,7 @@ MODBUS_MODULE_VERSION=R3.2-1.0.1
 # ==========================================================
 ASYN=$(EPICS_MODULES)/asyn/$(ASYN_MODULE_VERSION)
 MODBUS=$(EPICS_MODULES)/modbus/$(MODBUS_MODULE_VERSION)
-RKGA11424BW200=$(TOP)/../..
+RKAMPGA=$(TOP)/../..
 
 # Override in RELEASE.local please!
 EPICS_BASE=$(EPICS_SITE_TOP)/base/$(BASE_MODULE_VERSION)

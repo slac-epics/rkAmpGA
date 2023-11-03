@@ -8,17 +8,17 @@ include $(TOP)/configure/CONFIG
 #==================================================
 # build a support library
 
-LIBRARY_IOC += rkGA11424BW200
+LIBRARY_IOC += rkAmpGA
 
 # xxxRecord.h will be created from xxxRecord.dbd
 #DBDINC += xxxRecord
-# install rkGA11424BW200.dbd into <top>/dbd
-#DBD += rkGA11424BW200.dbd
+# install rkAmpGA.dbd into <top>/dbd
+#DBD += rkAmpGA.dbd
 
 # specify all source files to be compiled and added to the library
-#rkGA11424BW200_SRCS += xxx
+#rkAmpGA_SRCS += xxx
 
-rkGA11424BW200_LIBS += $(EPICS_BASE_IOC_LIBS)
+rkAmpGA_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
 
