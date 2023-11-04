@@ -13,9 +13,15 @@
   <property name="windowTitle">
    <string>R&amp;K GA11424BW200-5757RP</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,2,2,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,1">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,2,0,1,0">
+     <property name="topMargin">
+      <number>16</number>
+     </property>
+     <property name="bottomMargin">
+      <number>16</number>
+     </property>
      <item>
       <widget class="PyDMPushButton" name="PyDMPushButton">
        <property name="toolTip">
@@ -123,68 +129,44 @@
     </layout>
    </item>
    <item>
-    <widget class="QGroupBox" name="horizontalGroupBox_2">
+    <widget class="QGroupBox" name="formGroupBox">
      <property name="title">
-      <string>RF Forward Power</string>
+      <string>RF Power Status</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetDefaultConstraint</enum>
-      </property>
-      <item>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Forward Power</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
        <widget class="PyDMLineEdit" name="PyDMLineEdit">
         <property name="toolTip">
          <string/>
         </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_RF_OUT_PWR_SET</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="PyDMScaleIndicator" name="PyDMScaleIndicator">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="showUnits" stdset="0">
+        <property name="readOnly">
          <bool>true</bool>
         </property>
         <property name="channel" stdset="0">
          <string>ca://${P}SSSB_RF_OUT_PWR</string>
         </property>
-        <property name="barIndicator" stdset="0">
-         <bool>false</bool>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Reflected Power</string>
         </property>
        </widget>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="horizontalGroupBox_2">
-     <property name="title">
-      <string>RF Reflected Power</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1">
-      <item>
+      <item row="1" column="1">
        <widget class="PyDMLineEdit" name="PyDMLineEdit_2">
         <property name="toolTip">
          <string/>
         </property>
-        <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_RF_RFLCT_PWR_SET</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="PyDMScaleIndicator" name="PyDMScaleIndicator_2">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="showUnits" stdset="0">
+        <property name="readOnly">
          <bool>true</bool>
         </property>
         <property name="channel" stdset="0">
@@ -381,6 +363,12 @@
         <property name="toolTip">
          <string/>
         </property>
+        <property name="alarmSensitiveContent" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="alarmSensitiveBorder" stdset="0">
+         <bool>true</bool>
+        </property>
         <property name="PyDMToolTip" stdset="0">
          <string>Pulse width must be &lt;= 6uS and &lt;2% duty cycle. If it exceeds 6uS and/or 2% duty cycle, this fault is tripped</string>
         </property>
@@ -401,18 +389,43 @@
           <blue>0</blue>
          </color>
         </property>
+        <property name="showLabels" stdset="0">
+         <bool>true</bool>
+        </property>
+        <property name="bigEndian" stdset="0">
+         <bool>false</bool>
+        </property>
         <property name="circles" stdset="0">
          <bool>true</bool>
         </property>
+        <property name="numBits" stdset="0">
+         <number>1</number>
+        </property>
+        <property name="shift" stdset="0">
+         <number>0</number>
+        </property>
         <property name="labels" stdset="0">
          <stringlist>
-          <string>Pulse Width</string>
+          <string>Pulse Width Limit</string>
          </stringlist>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
@@ -442,11 +455,6 @@
    <class>PyDMPushButton</class>
    <extends>QPushButton</extends>
    <header>pydm.widgets.pushbutton</header>
-  </customwidget>
-  <customwidget>
-   <class>PyDMScaleIndicator</class>
-   <extends>QFrame</extends>
-   <header>pydm.widgets.scale</header>
   </customwidget>
  </customwidgets>
  <resources/>

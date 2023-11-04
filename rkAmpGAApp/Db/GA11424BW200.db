@@ -23,18 +23,6 @@ record(bo, "$(P)SSSB_RESET") {
     field(OUT, "@asyn($(OUTPORT), 1)")
 }
 
-record(longout, "$(P)SSSB_RF_OUT_PWR_SET") {
-    field(DESC, "Set forward out power")
-    field(EGU, "W")
-    field(DTYP, "asynInt32")
-    field(OUT, "@asyn($(OUTPORT), 2)")
-    # Register range 10-999W, however the hardware can only handle 600W out
-    field(DRVH, "600")
-    field(DRVL, "10")
-    field(HOPR, "600")
-    field(LOPR, "10")
-}
-
 # Readback for forward power
 record(longin, "$(P)SSSB_RF_OUT_PWR") {
     field(DESC, "Forward out power readback")
@@ -44,18 +32,6 @@ record(longin, "$(P)SSSB_RF_OUT_PWR") {
     field(SCAN, "I/O Intr")
     # Register range 10-999W, however the hardware can only handle 600W out
     field(HOPR, "600")
-    field(LOPR, "10")
-}
-
-record(longout, "$(P)SSSB_RF_RFLCT_PWR_SET") {
-    field(DESC, "Set out reflected power")
-    field(EGU, "W")
-    field(DTYP, "asynInt32")
-    field(OUT, "@asyn($(OUTPORT), 3)")
-    # Register range 10-999W, however the hardware can only handle 250W out
-    field(DRVH, "250")
-    field(DRVL, "10")
-    field(HOPR, "250")
     field(LOPR, "10")
 }
 
