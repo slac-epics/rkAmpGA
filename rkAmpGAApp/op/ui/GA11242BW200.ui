@@ -31,7 +31,7 @@
         <string>RUN</string>
        </property>
        <property name="channel" stdset="0">
-        <string>ca://${P}SSSB_STATE_SET</string>
+        <string>ca://${P}RFEnable</string>
        </property>
        <property name="pressValue" stdset="0">
         <string>1</string>
@@ -50,7 +50,7 @@
         <string/>
        </property>
        <property name="channel" stdset="0">
-        <string>ca://${P}SSSB_STATE_SET</string>
+        <string>ca://${P}RFEnable</string>
        </property>
        <property name="pressValue" stdset="0">
         <string>0</string>
@@ -69,7 +69,7 @@
         <string/>
        </property>
        <property name="channel" stdset="0">
-        <string>ca://${P}SSSB_STATE</string>
+        <string>ca://${P}RFEnableRBV</string>
        </property>
        <property name="offColor" stdset="0">
         <color>
@@ -97,7 +97,7 @@
         <string/>
        </property>
        <property name="rules" stdset="0">
-        <string>[{&quot;name&quot;: &quot;StoppedText&quot;, &quot;property&quot;: &quot;Text&quot;, &quot;initial_value&quot;: &quot;Stopped&quot;, &quot;expression&quot;: &quot;\&quot;Stopped\&quot; if ch[0] == 0 else \&quot;Running\&quot;&quot;, &quot;channels&quot;: [{&quot;channel&quot;: &quot;ca://${P}SSSB_STATE&quot;, &quot;trigger&quot;: true, &quot;use_enum&quot;: false}], &quot;notes&quot;: &quot;&quot;}]</string>
+        <string>[{&quot;name&quot;: &quot;StoppedText&quot;, &quot;property&quot;: &quot;Text&quot;, &quot;initial_value&quot;: &quot;Stopped&quot;, &quot;expression&quot;: &quot;\&quot;Stopped\&quot; if ch[0] == 0 else \&quot;Running\&quot;&quot;, &quot;channels&quot;: [{&quot;channel&quot;: &quot;ca://${P}RFEnableRBV&quot;, &quot;trigger&quot;: true, &quot;use_enum&quot;: false}], &quot;notes&quot;: &quot;&quot;}]</string>
        </property>
       </widget>
      </item>
@@ -113,7 +113,7 @@
         <string>Reboot the device</string>
        </property>
        <property name="channel" stdset="0">
-        <string>ca://${P}SSSB_RESET</string>
+        <string>ca://${P}FaultIntReset</string>
        </property>
        <property name="showConfirmDialog" stdset="0">
         <bool>true</bool>
@@ -150,7 +150,7 @@
          <bool>true</bool>
         </property>
         <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_RF_OUT_PWR</string>
+         <string>ca://${P}FwdPwr</string>
         </property>
        </widget>
       </item>
@@ -170,7 +170,7 @@
          <bool>true</bool>
         </property>
         <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_RF_RFLCT_PWR</string>
+         <string>ca://${P}RefPwr</string>
         </property>
        </widget>
       </item>
@@ -192,7 +192,7 @@
          <string>Forward power must be in range 10-600 watts</string>
         </property>
         <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_RF_OUT_PWR_FLT</string>
+         <string>ca://${P}FwdPwrFault</string>
         </property>
         <property name="onColor" stdset="0">
          <color>
@@ -227,7 +227,7 @@
          <string>If this trips, the device has overheated.</string>
         </property>
         <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_TEMP_FLT</string>
+         <string>ca://${P}TempFault</string>
         </property>
         <property name="onColor" stdset="0">
          <color>
@@ -262,7 +262,7 @@
          <string>Reflected power must be in range 10-250 Watts</string>
         </property>
         <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_RF_RFLCT_PWR_FLT</string>
+         <string>ca://${P}RefPwrFault</string>
         </property>
         <property name="onColor" stdset="0">
          <color>
@@ -297,7 +297,7 @@
          <string>10v power supply status.</string>
         </property>
         <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_PWR_10V_FLT</string>
+         <string>ca://${P}10VPSFault</string>
         </property>
         <property name="onColor" stdset="0">
          <color>
@@ -332,7 +332,7 @@
          <string>48v power supply status</string>
         </property>
         <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_PWR_48V_FLT</string>
+         <string>ca://${P}48VPSFault</string>
         </property>
         <property name="onColor" stdset="0">
          <color>
@@ -373,7 +373,7 @@
          <string>Pulse width must be &lt;= 6uS and &lt;2% duty cycle. If it exceeds 6uS and/or 2% duty cycle, this fault is tripped</string>
         </property>
         <property name="channel" stdset="0">
-         <string>ca://${P}SSSB_PULSE_OVER_FLT</string>
+         <string>ca://${P}PulseWidthFault</string>
         </property>
         <property name="onColor" stdset="0">
          <color>

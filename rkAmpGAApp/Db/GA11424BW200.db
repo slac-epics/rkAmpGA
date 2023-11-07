@@ -1,5 +1,5 @@
 
-record(bo, "$(P)SSSB_STATE_SET") {
+record(bo, "$(P)RFEnable") {
     field(DESC, "Set device operation state")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn($(OUTPORT), 0)")
@@ -8,7 +8,7 @@ record(bo, "$(P)SSSB_STATE_SET") {
 }
 
 # Readback for RUN
-record(bi, "$(P)SSSB_STATE") {
+record(bi, "$(P)RFEnableRBV") {
     field(DESC, "Device operation state readback")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 0)")
@@ -17,14 +17,14 @@ record(bi, "$(P)SSSB_STATE") {
     field(SCAN, "I/O Intr")
 }
 
-record(bo, "$(P)SSSB_RESET") {
+record(bo, "$(P)FaultIntReset") {
     field(DESC, "Device reset")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn($(OUTPORT), 1)")
 }
 
 # Readback for forward power
-record(longin, "$(P)SSSB_RF_OUT_PWR") {
+record(longin, "$(P)FwdPwr") {
     field(DESC, "Forward out power readback")
     field(EGU, "W")
     field(DTYP, "asynInt32")
@@ -36,7 +36,7 @@ record(longin, "$(P)SSSB_RF_OUT_PWR") {
 }
 
 # Readback for ref power
-record(longin, "$(P)SSSB_RF_RFLCT_PWR") {
+record(longin, "$(P)RefPwr") {
     field(DESC, "Out reflected power readback")
     field(EGU, "W")
     field(DTYP, "asynInt32")
@@ -47,7 +47,7 @@ record(longin, "$(P)SSSB_RF_RFLCT_PWR") {
     field(LOPR, "10")
 }
 
-record(bi, "$(P)SSSB_RF_OUT_PWR_FLT") {
+record(bi, "$(P)FwdPwrFault") {
     field(DESC, "Forward out power exceeds 600W")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 4)")
@@ -57,7 +57,7 @@ record(bi, "$(P)SSSB_RF_OUT_PWR_FLT") {
     field(SCAN, "I/O Intr")
 }
 
-record(bi, "$(P)SSSB_RF_RFLCT_PWR_FLT") {
+record(bi, "$(P)RefPwrFault") {
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 5)")
     field(OSV, "MAJOR")
@@ -66,7 +66,7 @@ record(bi, "$(P)SSSB_RF_RFLCT_PWR_FLT") {
     field(SCAN, "I/O Intr")
 }
 
-record(bi, "$(P)SSSB_TEMP_FLT") {
+record(bi, "$(P)TempFault") {
     field(DESC, "Over-temp fault")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 6)")
@@ -76,7 +76,7 @@ record(bi, "$(P)SSSB_TEMP_FLT") {
     field(SCAN, "I/O Intr")
 }
 
-record(bi, "$(P)SSSB_PWR_10V_FLT") {
+record(bi, "$(P)10VPSFault") {
     field(DESC, "10V power supply fault")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 7)")
@@ -86,7 +86,7 @@ record(bi, "$(P)SSSB_PWR_10V_FLT") {
     field(SCAN, "I/O Intr")
 }
 
-record(bi, "$(P)SSSB_PWR_48V_FLT") {
+record(bi, "$(P)48VPSFault") {
     field(DESC, "48V power supply fault")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 8)")
@@ -96,7 +96,7 @@ record(bi, "$(P)SSSB_PWR_48V_FLT") {
     field(SCAN, "I/O Intr")
 }
 
-record(bi, "$(P)SSSB_PULSE_OVER_FLT") {
+record(bi, "$(P)PulseWidthFault") {
     field(DESC, "Pulse width >6uS or pulse duty >2% fault")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 9)")
