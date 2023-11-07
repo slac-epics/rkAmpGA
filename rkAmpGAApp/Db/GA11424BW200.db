@@ -3,8 +3,8 @@ record(bo, "$(P):RFEnable") {
     field(DESC, "Set device operation state")
     field(DTYP, "asynInt32")
     field(OUT, "@asyn($(OUTPORT), 0)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
+    field(ZNAM, "Disabled")
+    field(ONAM, "Enabled")
 }
 
 # Readback for RUN
@@ -12,8 +12,10 @@ record(bi, "$(P):RFEnableRBV") {
     field(DESC, "Device operation state readback")
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 0)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
+    field(ZNAM, "Disabled")
+    field(ONAM, "Enabled")
+    field(ZSV, "MINOR")
+    field(OSV, "NO_ALARM")
     field(SCAN, "I/O Intr")
 }
 
@@ -30,9 +32,19 @@ record(longin, "$(P):FwdPwr") {
     field(DTYP, "asynInt32")
     field(INP, "@asyn($(INPORT), 2)")
     field(SCAN, "I/O Intr")
-    # Register range 10-999W, however the hardware can only handle 600W out
+    # Register range 1-999W, however the hardware can only handle 600W out
+    # Docs say 10-999W register range, but it actually reports 1W when not operating.
     field(HOPR, "600")
-    field(LOPR, "10")
+    field(LOPR, "1")
+    field(HIHI, "$(FWD_HIHI=600)")
+    field(HIGH, "$(FWD_HIGH=)")
+    field(LOLO, "$(FWD_LOLO=1)")
+    field(LOW, "$(FWD_LOW=)")
+    field(LSV, "$(FWD_LSV=NO_ALARM)")
+    field(HSV, "$(FWD_HSV=NO_ALARM)")
+    field(HHSV, "$(FWD_HHSV=MAJOR)")
+    field(LLSV, "$(FWD_LLSV=MAJOR)")
+    info(autosaveFields, "HIHI HIGH LOW LOLO HSV HHSV LSV LLSV HYST")
 }
 
 # Readback for ref power
@@ -43,8 +55,18 @@ record(longin, "$(P):RefPwr") {
     field(INP, "@asyn($(INPORT), 3)")
     field(SCAN, "I/O Intr")
     # Register range 10-999W, however the hardware can only handle 250W out
+    # Docs say 10-999W register range, but it actually reports 1W when not operating.
     field(HOPR, "250")
-    field(LOPR, "10")
+    field(LOPR, "1")
+    field(HIHI, "$(REF_HIHI=250)")
+    field(LOLO, "$(REF_LOLO=1)")
+    field(HIGH, "$(REF_HIGH=)")
+    field(LOW, "$(REF_LOW=)")
+    field(LSV, "$(REF_LSV=NO_ALARM)")
+    field(HSV, "$(REF_HSV=NO_ALARM)")
+    field(HHSV, "$(REF_HHSV=MAJOR)")
+    field(LLSV, "$(REF_LLSV=MAJOR)")
+    info(autosaveFields, "HIHI HIGH LOW LOLO HSV HHSV LSV LLSV HYST")
 }
 
 record(bi, "$(P):FwdPwrFault") {
