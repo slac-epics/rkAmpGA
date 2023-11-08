@@ -1,0 +1,73 @@
+--------------------------------------------------------------------
+            EPICS Support for R&K GA11424BW200-5757RP
+--------------------------------------------------------------------
+
+This module contains EPICS support for the R&K GA11424BW200-5757RP
+solid-state amplifier. It's based on the modbus module and asyn. 
+Overall the device is quite simple, so there's not a whole lot here.
+
+Creating an IOC
+--------------------------------------------------------------------
+In your RELEASE, add the following lines:
+
+  RKAMPGA_VERSION=R1.0.0
+  RKAMPGA=$(EPICS_MODULES)/rkAmpGA/$(RKAMPGA_VERSION)
+
+In your IOC startup script:
+
+  # Set the amplifier port. For simulation, this should be localhost
+  # or loopback. For a real device, this will be a real IP, with
+  # port 502 instead of 1502
+  epicsEnvSet(AMP_IP, "0.0.0.0:1502")
+  epicsEnvSet(AMP_PORT, "amp1") # Asyn port for the device
+  epicsEnvSet(AMP_PREFIX, "amp1") # Prefix for the records
+
+  # Execute the setup script.
+  # If you want more control over setup, or don't like this pattern,
+  # simply pull in the contents of this iocsh file and change as
+  # necessary. Make sure not to change any addresses or sizes.
+  < "${RKAMPGA}/db/GA11424BW200.iocsh"
+
+See iocs/testIOC for a simple example.
+
+PyDM Screen
+--------------------------------------------------------------------
+The PyDM screen is located at rkAmpGAApp/op/ui. Launch with the
+following command:
+
+  pydm -m 'P=myAmpPrefix' GA11424BW200.ui
+
+Test IOC
+--------------------------------------------------------------------
+The test IOC can be built using:
+
+  make BUILD_IOCS=YES
+
+It can be run using ./run-ioc.sh. See the next section for simulating
+a device.
+
+
+Simulation
+--------------------------------------------------------------------
+In the sim/ directory is a JSON description of the registers in the
+amp. This can be used with pymodbus' simulator feature.
+
+NOTE: when installing pymodbus, the simulator feature may be disabled
+ due to aiohttp being missing. Install that first and reinstall
+ pymodbus if you encounter this issue.
+
+The simulator may be run using ./sim/run-sym.sh or:
+  
+  pymodbus.simulator --json_file ./sim/setup.json
+
+Additional Notes
+--------------------------------------------------------------------
+
+1. The amplifier does not support modbus function 16 "Write multiple
+   registers". It only supports 3 and 6 for RW registers, and 3 for
+   read-only registers.
+
+2. Even though the docs say the register range for forward & ref pwr
+   is 10-999W, it will report 1W when not in operation, or when the
+   power is too low to measure.
+
